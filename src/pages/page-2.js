@@ -1,16 +1,36 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql } from "gatsby";
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
 
-const SecondPage = () => (
-  <Layout>
-    <SEO title="Page two" />
-    <h1>Hi from the second page</h1>
-    <p>Welcome to page 2</p>
-    <Link to="/">Go back to the homepage</Link>
-  </Layout>
-)
+const SecondPage = ({data}) => {
+  const articles = data.allDatoCmsArticle.edges;
+  return (
+    <div>
+      <h1>Blog</h1>
+      {articles.map(({node}) => {
+        return(
+          <div>
+          <div><h1>{node.title}</h1></div>
+          <div><h1>{node.content}</h1></div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+ 
+export const query = graphql`
+query {
+  allDatoCmsArticle {
+    edges {
+      node {
+        title
+        content
+      }
+    } 
+  }
+}
+`
 
-export default SecondPage
+
+export default SecondPage;

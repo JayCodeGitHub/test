@@ -5,6 +5,14 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        apiToken: `ec826cec2f984fe3bf402aa1375ef9`,
+        previewMode: false, 
+        disableLiveReload: false,  
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
